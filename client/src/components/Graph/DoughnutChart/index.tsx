@@ -1,27 +1,19 @@
-import { RadialChart } from "react-vis";
+import $ from './style.module.scss';
+import { Chart as ChartJS, ChartData, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
-type WinLoseRatio = {
-  angle: number;
-  color: string;
-};
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Props {
-  data: WinLoseRatio[];
+  data: ChartData<'doughnut', number[], string>;
+  ratio: number;
 }
 
-export default function DoughnutChart({ data }: Props) {
+export default function DoughnutChart({ data, ratio }: Props) {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      <RadialChart
-        colorType="literal"
-        innerRadius={65}
-        radius={55}
-        data={data}
-        width={160}
-        height={160}
-        animation={"gentle"}
-      />
+    <div className={$.chart}>
+      <strong>{ratio}%</strong>
+      <Doughnut data={data} options={{ cutout: '65%' }} />
     </div>
   );
 }

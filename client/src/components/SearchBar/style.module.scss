@@ -1,0 +1,22 @@
+.search {
+  display: flex;
+  align-items: center;
+  width: 480px;
+  height: 50px;
+  padding: 0 20px;
+  border: 1px solid rgb(203, 203, 203);
+  border-radius: 30px;
+  input {
+    width: 100%;
+    color: rgb(105, 105, 105);
+    background-color: transparent;
+    border: 0;
+    font-size: 15px;
+    &:focus {
+      outline: none;
+    }
+  }
+  img {
+    width: 42px;
+  }
+}
