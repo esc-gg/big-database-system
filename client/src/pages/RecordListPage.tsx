@@ -49,7 +49,7 @@ export default function RecordListPage() {
     ],
   });
 
-  const onFetch = (userName: string) => {
+  const fetchUserData = (userName: string) => {
     // data fetch
     console.log(userName);
     setIsSearch(true);
@@ -59,7 +59,7 @@ export default function RecordListPage() {
 
   return (
     <section>
-      <SearchBar onFetch={onFetch} />
+      <SearchBar onFetch={fetchUserData} />
       {isSearch && (
         <>
           <DoughnutChart data={doughnutData} ratio={ratio} />
