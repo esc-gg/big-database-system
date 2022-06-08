@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BarChart, DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
 import ChampionImage from '../components/ChampionImage';
+import DetailInfo from '../components/DetailInfo';
 
 export default function RecordListPage() {
   const [isSearch, setIsSearch] = useState<boolean>(false);
@@ -62,10 +63,11 @@ export default function RecordListPage() {
       <SearchBar onFetch={fetchUserData} />
       {isSearch && (
         <>
-          <DoughnutChart data={doughnutData} ratio={ratio} />
+          {/* <DoughnutChart data={doughnutData} ratio={ratio} />
           <LineChart data={lineData} />
           <BarChart data={barData} />
-          <ChampionImage source={`assets/championImage/${name}.jpg`} />
+          <ChampionImage source={name} /> */}
+          <DetailInfo />
         </>
       )}
     </section>
