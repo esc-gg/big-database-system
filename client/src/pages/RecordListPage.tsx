@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { BarChart, DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
-import ChampionImage from '../components/ChampionImage';
+import DetailInfo from '../components/DetailInfo';
+import { detailInfoMocks } from '../mock/detailInfo';
 
 export default function RecordListPage() {
   const [isSearch, setIsSearch] = useState<boolean>(false);
@@ -55,8 +56,6 @@ export default function RecordListPage() {
     setIsSearch(true);
   };
 
-  const name = 'Akali';
-
   return (
     <section>
       <SearchBar onFetch={fetchUserData} />
@@ -65,7 +64,8 @@ export default function RecordListPage() {
           <DoughnutChart data={doughnutData} ratio={ratio} />
           <LineChart data={lineData} />
           <BarChart data={barData} />
-          <ChampionImage source={`assets/championImage/${name}.jpg`} />
+          <DetailInfo data={detailInfoMocks[0]} />
+          <DetailInfo data={detailInfoMocks[1]} />
         </>
       )}
     </section>
