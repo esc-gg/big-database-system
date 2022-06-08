@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { BarChart, DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
-import DetailInfo from '../components/DetailInfo';
-import { detailInfoMocks } from '../mock/detailInfo';
+import GameSummary from '../components/GameSummary';
+import { summaryInfoMocks } from '../mock/summaryInfo';
+import $ from './style.module.scss';
 
 export default function RecordListPage() {
   const [isSearch, setIsSearch] = useState<boolean>(false);
@@ -59,13 +60,15 @@ export default function RecordListPage() {
   return (
     <section>
       <SearchBar onFetch={fetchUserData} />
+
       {isSearch && (
         <>
           <DoughnutChart data={doughnutData} ratio={ratio} />
           <LineChart data={lineData} />
           <BarChart data={barData} />
-          <DetailInfo data={detailInfoMocks[0]} />
-          <DetailInfo data={detailInfoMocks[1]} />
+          {summaryInfoMocks.map((summary, i) => (
+            <GameSummary key={`game-${i}`} gameSummary={summary} />
+          ))}
         </>
       )}
     </section>
