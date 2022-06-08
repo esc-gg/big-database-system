@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+
+.detail {
+  display: flex;
+  table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-radius: 5px;
+    overflow: hidden;
+
+    thead {
+      tr {
+        height: 32px;
+        background-color: $th-background;
+        th {
+          padding-left: 10px;
+          padding-top: 8px;
+          text-align: left;
+          color: $th-color;
+          font-size: 12px;
+          font-weight: 600;
+          &.lose {
+            color: $lose-border;
+            font-weight: 700;
+          }
+          &.win {
+            color: $victory-border;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        height: 45px;
+        td {
+          vertical-align: middle;
+          padding-left: 10px;
+          color: $basic-font;
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+    .winBody {
+      background-color: $victory-box;
+    }
+    .loseBody {
+      background-color: $lose-box;
+    }
+  }
+}
