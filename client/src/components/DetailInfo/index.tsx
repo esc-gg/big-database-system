@@ -1,52 +1,63 @@
 import $ from './style.module.scss';
 import { useState } from 'react';
-import { detailInfoMocks } from '../../mock/detailInfo';
 import ChampionImage from '../ChampionImage';
 import { BarChart } from '../Graph';
 
-export default function DetailInfo() {
-  const blueChampionName = detailInfoMocks[0].map(({ championName }) => championName);
-  const redChampionName = detailInfoMocks[0].map(({ championName }) => championName);
+interface Props {
+  data: {
+    summonerName: string;
+    championName: string;
+    kills: number;
+    deaths: number;
+    assists: number;
+    totalDamageDealtToChampions: number;
+    totalDamageTaken: number;
+    win: boolean;
+  }[];
+}
 
+export default function DetailInfo({ data }: Props) {
+  const winlose = data[0].win;
+  const labels = data.map(({ summonerName }) => summonerName);
+  const totalDamageDealtToChampions = data.map(({ totalDamageDealtToChampions }) => totalDamageDealtToChampions);
+  const totalDamageTaken = data.map(({ totalDamageTaken }) => totalDamageTaken);
   const [barData, setBarData] = useState({
-    blueChampionName,
+    labels,
     datasets: [
       {
         label: '가한 피해량',
-        data: [-80, -10, -45, -30, -90, 100],
-        borderColor: '#5383e8',
-        backgroundColor: '#5383e8',
+        data: totalDamageDealtToChampions,
+        borderColor: '#E84057',
+        backgroundColor: '#E84057',
       },
       {
         label: '받은 피해량',
-        data: [60, 20, 45, 30, 50, 100],
-        borderColor: '#f12c2c',
-        backgroundColor: '#f12c2c',
+        data: totalDamageTaken,
+        borderColor: '#9AA4AF',
+        backgroundColor: '#9AA4AF',
       },
     ],
   });
 
   return (
-    <section>
+    <section className={$.detail}>
       <table>
         <colgroup>
-          <col width="60" />
+          <col width="50" />
+          <col width="200" />
           <col width="150" />
-          <col width="150" />
-          <col width="400" />
         </colgroup>
 
         <thead>
           <tr>
-            <th className={$.lose} colSpan={2}>
+            <th className={winlose ? $.win : $.lose} colSpan={2}>
               패배
             </th>
             <th>KDA</th>
-            <th>피해량</th>
           </tr>
         </thead>
-        <tbody className={$.loseBody}>
-          {detailInfoMocks[0].map(
+        <tbody className={winlose ? $.winBody : $.loseBody}>
+          {data.map(
             (
               { summonerName, championName, kills, deaths, assists, totalDamageDealtToChampions, totalDamageTaken },
               index,
@@ -61,17 +72,12 @@ export default function DetailInfo() {
                 <td>
                   {kills}/{deaths}/{assists}
                 </td>
-                <td>피해량 그래프</td>
               </tr>
             ),
           )}
-          {/* <tr>
-            <td>
-              <BarChart data={barData} />
-            </td>
-          </tr> */}
         </tbody>
       </table>
+      <BarChart data={barData} />
     </section>
   );
 }

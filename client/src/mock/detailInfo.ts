@@ -8,6 +8,7 @@ export const detailInfoMocks = [
       assists: 18,
       totalDamageDealtToChampions: 53964,
       totalDamageTaken: 31878,
+      win: false,
     },
     {
       summonerName: '돈 욘',
@@ -17,6 +18,7 @@ export const detailInfoMocks = [
       assists: 22,
       totalDamageDealtToChampions: 16227,
       totalDamageTaken: 38426,
+      win: false,
     },
     {
       summonerName: 'liiliiiilii',
@@ -26,6 +28,7 @@ export const detailInfoMocks = [
       assists: 25,
       totalDamageDealtToChampions: 65651,
       totalDamageTaken: 38191,
+      win: false,
     },
     {
       summonerName: '준 욘',
@@ -35,6 +38,7 @@ export const detailInfoMocks = [
       assists: 16,
       totalDamageDealtToChampions: 19622,
       totalDamageTaken: 28088,
+      win: false,
     },
     {
       summonerName: '고대산pinhove',
@@ -44,6 +48,7 @@ export const detailInfoMocks = [
       assists: 10,
       totalDamageDealtToChampions: 26431,
       totalDamageTaken: 47199,
+      win: false,
     },
   ],
   [
@@ -55,6 +60,7 @@ export const detailInfoMocks = [
       assists: 7,
       totalDamageDealtToChampions: 19018,
       totalDamageTaken: 30742,
+      win: true,
     },
     {
       summonerName: 'sho1109',
@@ -64,6 +70,7 @@ export const detailInfoMocks = [
       assists: 7,
       totalDamageDealtToChampions: 26317,
       totalDamageTaken: 23216,
+      win: true,
     },
     {
       summonerName: '태 수 멍',
@@ -73,6 +80,7 @@ export const detailInfoMocks = [
       assists: 4,
       totalDamageDealtToChampions: 27501,
       totalDamageTaken: 38191,
+      win: true,
     },
     {
       summonerName: '갱도 간다',
@@ -82,6 +90,7 @@ export const detailInfoMocks = [
       assists: 10,
       totalDamageDealtToChampions: 27914,
       totalDamageTaken: 27980,
+      win: true,
     },
     {
       summonerName: '규래찌',
@@ -91,6 +100,7 @@ export const detailInfoMocks = [
       assists: 6,
       totalDamageDealtToChampions: 15753,
       totalDamageTaken: 21502,
+      win: true,
     },
   ],
 ];
