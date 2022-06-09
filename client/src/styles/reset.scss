@@ -90,6 +90,8 @@ video {
 }
 
 body {
+  overflow-y: scroll;
+  margin: 40px 0;
   background-color: $th-background;
 }
 

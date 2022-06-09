@@ -6,12 +6,15 @@
   align-items: center;
   table {
     border-top-left-radius: 5px;
+    &:last-child {
+      border-top-left-radius: 0;
+    }
     overflow: hidden;
 
     thead {
       tr {
         height: 32px;
-        background-color: $th-background;
+        background-color: #fff;
         th {
           padding-left: 10px;
           padding-top: 8px;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
 import GameSummary from '../components/GameSummary';

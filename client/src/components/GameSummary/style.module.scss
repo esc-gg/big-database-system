@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   border-radius: $champion-border-radius;
   border-left-width: 6px;
   border-left-style: solid;
@@ -49,10 +49,19 @@
   .more {
     display: flex;
     table {
+      width: 200px;
+      table-layout: fixed;
+      word-break: break-all;
       margin: 8px;
       font-size: 15px;
       th {
         font-weight: 600;
+      }
+      tr > td {
+        width: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
     button {
@@ -77,5 +86,5 @@
   border: 1px solid $th-color;
   border-radius: 5px;
   padding-right: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
