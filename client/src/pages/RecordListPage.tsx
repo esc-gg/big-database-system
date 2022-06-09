@@ -34,10 +34,15 @@ export default function RecordListPage() {
     ],
   });
 
-  const fetchUserData = (userName: string) => {
-    // data fetch
-    console.log(userName);
-    setIsSearch(true);
+  const fetchUserData = async (userName: string) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/match/search/${userName}`);
+      const data = await response.json();
+      console.log(data);
+      setIsSearch(true);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -52,9 +57,9 @@ export default function RecordListPage() {
             <DoughnutChart data={doughnutData} ratio={ratio} />
             <LineChart data={lineData} />
           </div>
-          {summaryInfoMocks.map((summary, i) => (
+          {/* {summaryInfoMocks.map((summary, i) => (
             <GameSummary key={`game-${i}`} gameSummary={summary} />
-          ))}
+          ))} */}
         </>
       )}
     </section>

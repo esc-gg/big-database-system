@@ -8,9 +8,9 @@ import { detailInfoMocks } from '../../mock/detailInfo';
 interface Props {
   gameSummary: {
     gameMode: string;
-    isVictory: boolean;
     gameDuration: number;
     championName: string;
+    win: boolean;
     kills: number;
     deaths: number;
     assists: number;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export default function GameSummary({
-  gameSummary: { gameMode, isVictory, gameDuration, championName, kills, deaths, assists, victoryMember, loseMember },
+  gameSummary: { gameMode, win, gameDuration, championName, kills, deaths, assists, victoryMember, loseMember },
 }: Props) {
   const [isClicked, setIsClicked] = useState(false);
   const hour = Math.floor(gameDuration / 3600);
@@ -29,10 +29,10 @@ export default function GameSummary({
 
   return (
     <>
-      <li className={classnames($['game-summary'], { [$['is-victory']]: isVictory })}>
+      <li className={classnames($['game-summary'], { [$['is-victory']]: win })}>
         <div className={$['game-info']}>
-          <em className={classnames($['game-mode'], { [$['is-victory']]: isVictory })}>{gameMode}</em>
-          <em>{isVictory ? '승리' : '패배'}</em>
+          <em className={classnames($['game-mode'], { [$['is-victory']]: win })}>{gameMode}</em>
+          <em>{win ? '승리' : '패배'}</em>
           <span>
             {hour !== 0 && `${hour}시간`} {min}분 {sec}초
           </span>
@@ -68,7 +68,7 @@ export default function GameSummary({
             </tbody>
           </table>
           <button
-            className={classnames({ [$['button-victory']]: isVictory })}
+            className={classnames({ [$['button-victory']]: win })}
             onClick={() => setIsClicked((isClicked) => !isClicked)}
           >
             v
