@@ -1,9 +1,13 @@
 package esc.gg.controller;
 
 import esc.gg.dto.MatchPreviewDto;
+import esc.gg.dto.WinOrLostDto;
 import esc.gg.model.Match;
 import esc.gg.repository.MatchRepository;
+import esc.gg.service.GetFavoritePlayerLaneService;
 import esc.gg.service.GetMatchPreviewsBySnameService;
+import esc.gg.service.GetRatioOfWinOrLostService;
+import esc.gg.service.GetSumOfGameDurationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +24,9 @@ public class MatchController {
 
     private final MatchRepository matchRepository;
     private final GetMatchPreviewsBySnameService getMatchPreviewsBySnameService;
+    private final GetSumOfGameDurationService getSumOfGameDurationService;
+    private final GetFavoritePlayerLaneService getFavoritePlayerLaneService;
+    private final GetRatioOfWinOrLostService getRatioOfWinOrLostService;
 
     @GetMapping("/search/{summonerName}")
     public ResponseEntity<?> getMatchPreviewDatas(@PathVariable String summonerName){
@@ -27,9 +34,21 @@ public class MatchController {
         return new ResponseEntity<>(matchPreviewsBySname, HttpStatus.OK);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> getAll(){
-        List<Match> matches = matchRepository.findAll();
-        return new ResponseEntity<>(matches, HttpStatus.OK);
+    @GetMapping("/duration/{summonerName}")
+    public ResponseEntity<?> getSumOfGameDurations(@PathVariable String summonerName){
+        Long sumOfGameDuration = getSumOfGameDurationService.getSumOfGameDuration(summonerName);
+        return new ResponseEntity<>(sumOfGameDuration, HttpStatus.OK);
+    }
+
+    @GetMapping("/lane/{summonerName}")
+    public ResponseEntity<?> getFavoritePlayerLane(@PathVariable String summonerName){
+        String favoritePlayerLane = getFavoritePlayerLaneService.getFavoritePlayerLane(summonerName);
+        return new ResponseEntity<>(favoritePlayerLane, HttpStatus.OK);
+    }
+
+    @GetMapping("/total/{summonerName}")
+    public ResponseEntity<?> getRatioOfWinOrLost(@PathVariable String summonerName){
+        WinOrLostDto ratio = getRatioOfWinOrLostService.getRatio(summonerName);
+        return new ResponseEntity<>(ratio, HttpStatus.OK);
     }
 }

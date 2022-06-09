@@ -1,7 +1,9 @@
 package esc.gg;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -24,7 +26,7 @@ import java.nio.charset.Charset;
  */
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class})
 public class GgApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GgApplication.class, args);
