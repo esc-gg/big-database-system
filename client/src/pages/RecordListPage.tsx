@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
 import GameSummary from '../components/GameSummary';
-import { summaryInfoMocks } from '../mock/summaryInfo';
 import $ from './style.module.scss';
 
 export default function RecordListPage() {
+  const [fetchData, setFetchData] = useState([]);
   const [isSearch, setIsSearch] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [doughnutData, setDoughnutData] = useState({
     labels: ['WIN', 'LOSE'],
@@ -35,13 +36,18 @@ export default function RecordListPage() {
   });
 
   const fetchUserData = async (userName: string) => {
+    setIsSearch(false);
+    setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/match/search/${userName}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/match/search/${userName}`);
       const data = await response.json();
-      console.log(data);
-      setIsSearch(true);
+      setFetchData(data);
     } catch (e) {
+      setFetchData([]);
       console.log(e);
+    } finally {
+      setIsSearch(true);
+      setIsLoading(false);
     }
   };
 
@@ -51,15 +57,27 @@ export default function RecordListPage() {
         <SearchBar onFetch={fetchUserData} />
       </div>
 
+      {isLoading && (
+        <div className={$.loading}>
+          <div className={$.spinner}></div>
+        </div>
+      )}
+
       {isSearch && (
         <>
-          <div className={$.content}>
-            <DoughnutChart data={doughnutData} ratio={ratio} />
-            <LineChart data={lineData} />
-          </div>
-          {/* {summaryInfoMocks.map((summary, i) => (
-            <GameSummary key={`game-${i}`} gameSummary={summary} />
-          ))} */}
+          {fetchData.length ? (
+            <>
+              <div className={$.content}>
+                <DoughnutChart data={doughnutData} ratio={ratio} />
+                <LineChart data={lineData} />
+              </div>
+              {fetchData.map((summary, i) => (
+                <GameSummary key={`game-${i}`} gameSummary={summary} />
+              ))}
+            </>
+          ) : (
+            <span className={$['no-result']}>검색 결과가 없습니다.</span>
+          )}
         </>
       )}
     </section>
