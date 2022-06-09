@@ -59,13 +59,16 @@ export default function RecordListPage() {
 
   return (
     <section>
-      <SearchBar onFetch={fetchUserData} />
+      <div className={$.search}>
+        <SearchBar onFetch={fetchUserData} />
+      </div>
 
       {isSearch && (
         <>
-          <DoughnutChart data={doughnutData} ratio={ratio} />
-          <LineChart data={lineData} />
-          <BarChart data={barData} />
+          <div className={$.content}>
+            <DoughnutChart data={doughnutData} ratio={ratio} />
+            <LineChart data={lineData} />
+          </div>
           {summaryInfoMocks.map((summary, i) => (
             <GameSummary key={`game-${i}`} gameSummary={summary} />
           ))}
