@@ -46,12 +46,16 @@ export default function GameSummary({
               <span>{deaths}</span>
               <span> / {assists}</span>
             </div>
-            <span>{(kills + assists) / deaths}:1 평점</span>
+            <span>{((kills + assists) / deaths).toFixed(2)}:1 평점</span>
           </div>
         </div>
 
         <div className={$['more']}>
           <table>
+            <colgroup>
+              <col width="100" />
+              <col width="100" />
+            </colgroup>
             <tbody>
               <th>아군</th>
               <th>적군</th>
