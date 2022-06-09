@@ -51,7 +51,7 @@ export default function DetailInfo({ data }: Props) {
         <thead>
           <tr>
             <th className={winlose ? $.win : $.lose} colSpan={2}>
-              패배
+              {winlose ? '승리' : '패배'}
             </th>
             <th>KDA</th>
           </tr>

@@ -72,3 +72,9 @@
   border-color: $victory-border;
   background-color: $victory-box;
 }
+.detail {
+  box-sizing: border-box;
+  border: 1px solid $th-color;
+  border-radius: 5px;
+  padding-right: 5px;
+}

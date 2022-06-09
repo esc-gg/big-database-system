@@ -11,6 +11,17 @@ const options = {
       borderWidth: 0,
     },
   },
+  responsive: true,
+  cutout: '65%',
+  color: 'rgb(200, 200, 200)',
+  scales: {
+    y: {
+      ticks: { color: 'rgb(200, 200, 200)' },
+    },
+    x: {
+      ticks: { color: 'rgb(200, 200, 200)' },
+    },
+  },
 };
 
 interface Props {

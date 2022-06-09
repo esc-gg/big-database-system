@@ -1,3 +1,14 @@
+@import '../../src/styles/variables';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: $th-background;
+}
+
 .search {
   display: flex;
   justify-content: center;
@@ -6,5 +17,6 @@
 
 .content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }

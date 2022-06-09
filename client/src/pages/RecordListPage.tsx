@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BarChart, DoughnutChart, LineChart } from '../components/Graph';
+import { DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
 import GameSummary from '../components/GameSummary';
 import { summaryInfoMocks } from '../mock/summaryInfo';
@@ -14,6 +14,7 @@ export default function RecordListPage() {
       {
         data: [40, 60],
         backgroundColor: ['#5383e8', '#f12c2c'],
+        borderWidth: 0.8,
       },
     ],
   });
@@ -33,24 +34,6 @@ export default function RecordListPage() {
     ],
   });
 
-  const [barData, setBarData] = useState({
-    labels,
-    datasets: [
-      {
-        label: '가한 피해량',
-        data: [-80, -10, -45, -30, -90, 100],
-        borderColor: '#5383e8',
-        backgroundColor: '#5383e8',
-      },
-      {
-        label: '받은 피해량',
-        data: [60, 20, 45, 30, 50, 100],
-        borderColor: '#f12c2c',
-        backgroundColor: '#f12c2c',
-      },
-    ],
-  });
-
   const fetchUserData = (userName: string) => {
     // data fetch
     console.log(userName);
@@ -58,7 +41,7 @@ export default function RecordListPage() {
   };
 
   return (
-    <section>
+    <section className={$.main}>
       <div className={$.search}>
         <SearchBar onFetch={fetchUserData} />
       </div>

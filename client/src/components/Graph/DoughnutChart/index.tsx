@@ -9,11 +9,17 @@ interface Props {
   ratio: number;
 }
 
+const options = {
+  responsive: true,
+  cutout: '65%',
+  color: 'rgb(200, 200, 200)',
+};
+
 export default function DoughnutChart({ data, ratio }: Props) {
   return (
     <div className={$.chart}>
       <strong>{ratio}%</strong>
-      <Doughnut data={data} options={{ cutout: '65%' }} />
+      <Doughnut data={data} options={options} />
     </div>
   );
 }

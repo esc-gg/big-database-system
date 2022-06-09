@@ -5,9 +5,7 @@
   justify-content: space-between;
   align-items: center;
   table {
-    table-layout: fixed;
-    border-collapse: separate;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
     overflow: hidden;
 
     thead {

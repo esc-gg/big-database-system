@@ -72,10 +72,10 @@ export default function GameSummary({
         </div>
       </li>
       {isClicked && (
-        <>
+        <div className={$.detail}>
           <DetailInfo data={detailInfoMocks[0]} />
           <DetailInfo data={detailInfoMocks[1]} />
-        </>
+        </div>
       )}
     </>
   );
