@@ -50,6 +50,10 @@
     display: flex;
     table {
       margin: 8px;
+      font-size: 15px;
+      th {
+        font-weight: 600;
+      }
     }
     button {
       width: 40px;
