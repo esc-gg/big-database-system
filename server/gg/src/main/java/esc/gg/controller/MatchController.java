@@ -1,5 +1,7 @@
 package esc.gg.controller;
 
+import esc.gg.dto.DurationResponseDto;
+import esc.gg.dto.LaneResponeDto;
 import esc.gg.dto.MatchPreviewDto;
 import esc.gg.dto.WinOrLostDto;
 import esc.gg.model.Match;
@@ -37,13 +39,15 @@ public class MatchController {
     @GetMapping("/duration/{summonerName}")
     public ResponseEntity<?> getSumOfGameDurations(@PathVariable String summonerName){
         Long sumOfGameDuration = getSumOfGameDurationService.getSumOfGameDuration(summonerName);
-        return new ResponseEntity<>(sumOfGameDuration, HttpStatus.OK);
+        DurationResponseDto dto = new DurationResponseDto(sumOfGameDuration);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/lane/{summonerName}")
     public ResponseEntity<?> getFavoritePlayerLane(@PathVariable String summonerName){
         String favoritePlayerLane = getFavoritePlayerLaneService.getFavoritePlayerLane(summonerName);
-        return new ResponseEntity<>(favoritePlayerLane, HttpStatus.OK);
+        LaneResponeDto dto = new LaneResponeDto(favoritePlayerLane);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/total/{summonerName}")
