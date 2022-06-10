@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DoughnutChart, LineChart } from '../components/Graph';
 import SearchBar from '../components/SearchBar';
 import GameSummary from '../components/GameSummary';
 import $ from './style.module.scss';
-import { fetchTotal } from '../api/fetch';
+import { fetchTotal, fetchDuration, fetchLane } from '../api/fetch';
 
 export default function RecordListPage() {
   const [fetchData, setFetchData] = useState([]);
@@ -36,6 +36,11 @@ export default function RecordListPage() {
     ],
   });
 
+  const [allDuration, setAllDuration] = useState(0);
+  const min = Math.floor(allDuration / 60);
+
+  const [mostPosition, setMostPosition] = useState('');
+
   const fetchUserData = async (userName: string) => {
     setIsSearch(false);
     setIsLoading(true);
@@ -49,6 +54,19 @@ export default function RecordListPage() {
           const { win, lost } = data;
           const winlost = [win, lost];
           setTotalWinLost(winlost);
+        })
+        .catch((err) => console.log(err));
+
+      await fetchDuration(userName)
+        .then((data) => {
+          setAllDuration(data);
+        })
+        .catch((err) => console.log(err));
+
+      await fetchLane(userName)
+        .then((data) => {
+          console.log(data);
+          setMostPosition(data);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -76,6 +94,16 @@ export default function RecordListPage() {
         <>
           {fetchData.length ? (
             <>
+              <div className={$['more-info']}>
+                <div className={$['duration-box']}>
+                  <span>총 플레이 시간</span>
+                  <div className={$.duration}>
+                    <span>{min}분</span>
+                    <img src="http://ifi.gg/static/media/img-days.c05cc31f.svg" alt="time-img" />
+                  </div>
+                </div>
+                <div>{mostPosition}</div>
+              </div>
               <div className={$.content}>
                 <DoughnutChart data={doughnutData} totalWinLost={totalWinLost} ratio={ratio} />
                 <LineChart data={lineData} />

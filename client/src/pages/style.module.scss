@@ -40,6 +40,34 @@
   }
 }
 
+.more-info {
+  .duration-box {
+    width: 250px;
+    background-color: $time-background;
+    padding: 10px 0 0 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 18px;
+    color: $font-color;
+    .duration {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-left: 10px;
+      span {
+        font-size: 24px;
+        line-height: 45px;
+        font-weight: 600;
+      }
+    }
+    img {
+      width: 72px;
+      height: 58px;
+    }
+  }
+}
+
 .content {
   display: flex;
   justify-content: space-between;
