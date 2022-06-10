@@ -51,7 +51,7 @@ export default function GameSummary({
         </div>
 
         <div className={$['more']}>
-          <table>
+          {/* <table>
             <colgroup>
               <col width="100" />
               <col width="100" />
@@ -66,7 +66,7 @@ export default function GameSummary({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
           <button
             className={classnames({ [$['button-victory']]: win })}
             onClick={() => setIsClicked((isClicked) => !isClicked)}

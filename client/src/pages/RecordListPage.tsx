@@ -50,23 +50,20 @@ export default function RecordListPage() {
       setFetchData(data);
 
       await fetchTotal(userName)
-        .then((data) => {
-          const { win, lost } = data;
-          const winlost = [win, lost];
-          setTotalWinLost(winlost);
+        .then(({ win, lost }) => {
+          setTotalWinLost([win, lost]);
         })
         .catch((err) => console.log(err));
 
       await fetchDuration(userName)
-        .then((data) => {
-          setAllDuration(data);
+        .then(({ duration }) => {
+          setAllDuration(duration);
         })
         .catch((err) => console.log(err));
 
       await fetchLane(userName)
-        .then((data) => {
-          console.log(data);
-          setMostPosition(data);
+        .then(({ lane }) => {
+          setMostPosition(lane);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -99,10 +96,16 @@ export default function RecordListPage() {
                   <span>총 플레이 시간</span>
                   <div className={$.duration}>
                     <span>{min}분</span>
-                    <img src="http://ifi.gg/static/media/img-days.c05cc31f.svg" alt="time-img" />
+                    <img src="http://ifi.gg/static/media/img-days.c05cc31f.svg" alt="총 플레이 시간" />
                   </div>
                 </div>
-                <div>{mostPosition}</div>
+                <div className={$['position-box']}>
+                  <span>선호하는 포지션</span>
+                  <div className={$.duration}>
+                    <span>{mostPosition}</span>
+                    <img src="http://ifi.gg/static/media/icon-logo.98416af6.svg" alt="선호하는 포지션" />
+                  </div>
+                </div>
               </div>
               <div className={$.content}>
                 <DoughnutChart data={doughnutData} totalWinLost={totalWinLost} ratio={ratio} />
