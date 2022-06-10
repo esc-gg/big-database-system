@@ -1,11 +1,17 @@
+@import 'src/styles/_variables.scss';
+
 .chart {
   position: relative;
   width: 180px;
+  span {
+    margin-left: 10px;
+    color: $font-color;
+  }
 
   strong {
     position: absolute;
-    top: 32%;
-    left: 35%;
+    top: 39%;
+    left: 37%;
     line-height: 88px;
     font-size: 25px;
     font-weight: 700;

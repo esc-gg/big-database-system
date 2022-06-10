@@ -77,7 +77,7 @@ export default function RecordListPage() {
           {fetchData.length ? (
             <>
               <div className={$.content}>
-                <DoughnutChart data={doughnutData} ratio={ratio} />
+                <DoughnutChart data={doughnutData} totalWinLost={totalWinLost} ratio={ratio} />
                 <LineChart data={lineData} />
               </div>
               {fetchData.map((summary, i) => (
