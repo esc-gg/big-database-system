@@ -16,7 +16,7 @@ export default function RecordListPage() {
       {
         data: totalWinLost,
         backgroundColor: ['#5383e8', '#f12c2c'],
-        borderWidth: 0.8,
+        borderWidth: 0,
       },
     ],
   };
