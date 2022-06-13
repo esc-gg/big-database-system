@@ -14,13 +14,12 @@ interface Props {
     kills: number;
     deaths: number;
     assists: number;
-    victoryMember: string[];
-    loseMember: string[];
+    summonerList: string[];
   };
 }
 
 export default function GameSummary({
-  gameSummary: { gameMode, win, gameDuration, championName, kills, deaths, assists, victoryMember, loseMember },
+  gameSummary: { gameMode, win, gameDuration, championName, kills, deaths, assists, summonerList },
 }: Props) {
   const [isClicked, setIsClicked] = useState(false);
   const hour = Math.floor(gameDuration / 3600);
@@ -51,22 +50,20 @@ export default function GameSummary({
         </div>
 
         <div className={$['more']}>
-          {/* <table>
+          <table>
             <colgroup>
               <col width="100" />
               <col width="100" />
             </colgroup>
             <tbody>
-              <th>아군</th>
-              <th>적군</th>
-              {victoryMember.map((victory, i) => (
-                <tr key={victory}>
-                  <td>{victory}</td>
-                  <td>{loseMember[i]}</td>
+              {summonerList.slice(0, 5).map((summoner, i) => (
+                <tr key={summoner}>
+                  <td>{summoner}</td>
+                  <td>{summonerList[i + 5]}</td>
                 </tr>
               ))}
             </tbody>
-          </table> */}
+          </table>
           <button
             className={classnames({ [$['button-victory']]: win })}
             onClick={() => setIsClicked((isClicked) => !isClicked)}
