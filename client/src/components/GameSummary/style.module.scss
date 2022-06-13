@@ -6,7 +6,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  padding: 10px 0;
   border-radius: $champion-border-radius;
   border-left-width: 6px;
   border-left-style: solid;
@@ -53,7 +52,7 @@
       width: 200px;
       table-layout: fixed;
       word-break: break-all;
-      margin: 8px;
+      margin: 15px 8px;
       font-size: 15px;
       th {
         font-weight: 600;
