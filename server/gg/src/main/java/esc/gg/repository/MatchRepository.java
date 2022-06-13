@@ -44,13 +44,13 @@ public interface MatchRepository extends MongoRepository<Match,String> {
     @Query(value = "{'info.participants.summonerName':?0}", fields = "{_id:0, 'info.gameDuration' : 1}")
     List<Match> findGameDurationOfMatch(String summonerName);
 
-    @Aggregation(pipeline = {"{'$unwind':{path:'$info.participants'}}","{'$match':{'info.participants.summonerName':?0}}","{'$group':{_id:'$info.participants.lane','count':{'$sum':1}}}"})
+    @Aggregation(pipeline = {"{'$match':{'info.participants.summonerName':?0}}", "{'$unwind':{path:'$info.participants'}}","{'$match':{'info.participants.summonerName':?0}}","{'$group':{_id:'$info.participants.lane','count':{'$sum':1}}}"})
     List<Lane> findPlayedLane(String summonerName);
 
-    @Aggregation(pipeline = {"{'$unwind':{path:'$info.participants'}}","{'$match':{'info.participants.summonerName':?0}}","{'$group':{_id:'$info.participants.win','totalWinCount':{'$sum':1}}}"})
+    @Aggregation(pipeline = {"{'$match':{'info.participants.summonerName':?0}}", "{'$unwind':{path:'$info.participants'}}","{'$match':{'info.participants.summonerName':?0}}","{'$group':{_id:'$info.participants.win','totalWinCount':{'$sum':1}}}"})
     List<NumOfWinOrLost> findCntOfGamesWon(String summonerName);
 
-    @Aggregation(pipeline = {"{'$unwind':{path:'$info.participants'}}", "{'$match':{'info.participants.summonerName':?0}}",
+    @Aggregation(pipeline = {"{'$match':{'info.participants.summonerName':?0}}", "{'$unwind':{path:'$info.participants'}}", "{'$match':{'info.participants.summonerName':?0}}",
             "{'$group':{champ_id:'$info.participants.championName', win_id:'$info.participants.win'}, count:{$sum:1}}",
             "{'$sort':{champ_id:-1}}"})
     List<ChampionAndCnt> findChampionWinOrLostRate(String summonerName);
