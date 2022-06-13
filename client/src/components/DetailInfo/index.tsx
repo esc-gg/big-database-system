@@ -14,9 +14,10 @@ interface Props {
     totalDamageTaken: number;
     win: boolean;
   }[];
+  summonerList: string[];
 }
 
-export default function DetailInfo({ data }: Props) {
+export default function DetailInfo({ data, summonerList }: Props) {
   const winlose = data[0].win;
   const labels = data.map(({ summonerName }) => summonerName);
   const totalDamageDealtToChampions = data.map(({ totalDamageDealtToChampions }) => totalDamageDealtToChampions);
@@ -58,16 +59,13 @@ export default function DetailInfo({ data }: Props) {
         </thead>
         <tbody className={winlose ? $.winBody : $.loseBody}>
           {data.map(
-            (
-              { summonerName, championName, kills, deaths, assists, totalDamageDealtToChampions, totalDamageTaken },
-              index,
-            ) => (
-              <tr key={summonerName + index}>
+            ({ championName, kills, deaths, assists, totalDamageDealtToChampions, totalDamageTaken }, index) => (
+              <tr key={summonerList[index] + index}>
                 <td className={$.main}>
                   <ChampionImage source={championName} />
                 </td>
                 <td>
-                  <strong>{summonerName}</strong>
+                  <strong>{summonerList[index]}</strong>
                 </td>
                 <td>
                   {kills}/{deaths}/{assists}

@@ -74,8 +74,8 @@ export default function GameSummary({
       </li>
       {isClicked && (
         <div className={$.detail}>
-          <DetailInfo data={detailInfoMocks[0]} />
-          <DetailInfo data={detailInfoMocks[1]} />
+          <DetailInfo data={detailInfoMocks[0]} summonerList={summonerList.slice(0, 5)} />
+          <DetailInfo data={detailInfoMocks[1]} summonerList={summonerList.slice(5, 10)} />
         </div>
       )}
     </>
