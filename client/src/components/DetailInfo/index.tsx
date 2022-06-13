@@ -19,11 +19,10 @@ interface Props {
 
 export default function DetailInfo({ data, summonerList }: Props) {
   const winlose = data[0].win;
-  const labels = data.map(({ summonerName }) => summonerName);
   const totalDamageDealtToChampions = data.map(({ totalDamageDealtToChampions }) => totalDamageDealtToChampions);
   const totalDamageTaken = data.map(({ totalDamageTaken }) => totalDamageTaken);
   const [barData, setBarData] = useState({
-    labels,
+    labels: summonerList,
     datasets: [
       {
         label: '가한 피해량',
