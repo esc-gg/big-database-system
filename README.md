@@ -10,8 +10,8 @@ database name: match_data, collection name: data
 ## 🖥 client
 ```
 cd client
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 ## 📀 server
